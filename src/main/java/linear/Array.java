@@ -40,6 +40,14 @@ public class Array {
         Arrays.stream(_array).forEach(System.out::println);
     }
 
+    public int max() {
+        int largest = 0;
+        for (int i : _array) {
+            if (i > largest) largest = i;
+        }
+        return largest;
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(_array);
