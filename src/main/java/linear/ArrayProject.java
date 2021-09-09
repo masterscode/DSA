@@ -22,16 +22,14 @@ public class ArrayProject {
         getTemperatureFromUser();
         setAverage();
 
-        log.info("average temperature is: " + averageTemperature);
+        log.info(String.format("average temperature is: %s", averageTemperature));
 
-        log.info(String.valueOf(
-                getTemperaturesAboveAverage()
-        ));
+        log.info(String.valueOf(getTemperaturesAboveAverage()));
 
     }
 
     public static void main(String[] args) {
-        ArrayProject arrayProject = new ArrayProject();
+        new ArrayProject();
     }
 
     public void getTemperatureFromUser(){
@@ -44,7 +42,7 @@ public class ArrayProject {
 
     public void setAverage(){
        final int sumOfTemperatures =  Arrays.stream(temperatures).reduce(Integer::sum).orElse(0);
-       averageTemperature = sumOfTemperatures / temperatures.length;
+       averageTemperature = (double)sumOfTemperatures / temperatures.length;
     }
 
     public List<Integer> getTemperaturesAboveAverage(){
