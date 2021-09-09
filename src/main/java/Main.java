@@ -1,4 +1,4 @@
-import linear.Array;
+import linear.array.Array;
 
 public class Main {
     public static void main(String[] args) {
