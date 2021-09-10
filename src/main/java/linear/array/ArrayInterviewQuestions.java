@@ -7,16 +7,26 @@ import java.util.List;
 public class ArrayInterviewQuestions {
     public static void main(String[] args) {
 
-
+        final int[] values = new int[]{2, 1, 3, 3, 2,3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
+
+        System.out.println("the value is at index " + interviewQuestions.hasValue(values, 3));
 
         interviewQuestions.findMissingNumber(interviewQuestions.getArray());
 
 
-        var result = interviewQuestions.pairSum(new int[]{2, 1, 3, 3, 2,3}, 4);
+        var result = interviewQuestions.pairSum(values, 4);
 
         for (Integer[] val : result) System.out.println(Arrays.toString(val));
 
+    }
+
+    public int hasValue(int[] values, int val){
+
+        for (int index = 0; index < values.length; index++) {
+            if (values[index] == val) return index;
+        }
+        return -1;
     }
     public List<Integer[]> pairSum(int[] numbers, int target){
         final int itemsCount = numbers.length;
