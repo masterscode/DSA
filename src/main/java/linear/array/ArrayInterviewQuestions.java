@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//find all occurrence of a number in an array
 public class ArrayInterviewQuestions {
     public static void main(String[] args) {
 
-        final int[] values = new int[]{2, 1, 3, 3, 2,3};
+        final int[] values = new int[]{2, 1, 3, 3, 2, 3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
+
+        System.out.println("max product values: " + Arrays.toString(interviewQuestions.maxProduct(values)));
 
         System.out.println("the value is at index " + interviewQuestions.hasValue(values, 3));
 
@@ -21,20 +24,38 @@ public class ArrayInterviewQuestions {
 
     }
 
-    public int hasValue(int[] values, int val){
+    public int[] maxProduct(int[] values) {
+        final int[] result = new int[2];
+        int product = 0;
+        for (int i = 0; i < values.length; i++) {
+            for (int j = i + 1; j < values.length; j++) {
+                int calculatedProduct = values[i] * values[j];
+                if (calculatedProduct > product) {
+                    product = calculatedProduct;
+                    result[0] = values[i];
+                    result[1] = values[j];
+                }
+
+            }
+        }
+        return result;
+    }
+
+    public int hasValue(int[] values, int val) {
 
         for (int index = 0; index < values.length; index++) {
             if (values[index] == val) return index;
         }
         return -1;
     }
-    public List<Integer[]> pairSum(int[] numbers, int target){
+
+    public List<Integer[]> pairSum(int[] numbers, int target) {
         final int itemsCount = numbers.length;
         List<Integer[]> result = new ArrayList<>();
 
-        for (int i = 0; i < itemsCount; i++){
+        for (int i = 0; i < itemsCount; i++) {
 
-            for (int j = i + 1; j < itemsCount; j++){
+            for (int j = i + 1; j < itemsCount; j++) {
 
                 int sum = numbers[i] + numbers[j];
                 if (sum == target) {
@@ -47,6 +68,7 @@ public class ArrayInterviewQuestions {
 
         return result;
     }
+
     public void findMissingNumber(int[] numbers) {
         int calculatedSum = 0;
         int expectedSum = 0;
