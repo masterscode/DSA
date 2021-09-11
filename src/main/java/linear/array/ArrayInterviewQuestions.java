@@ -5,11 +5,17 @@ import java.util.Arrays;
 import java.util.List;
 
 //find all occurrence of a number in an array
+// download and configure code metrics plugin
 public class ArrayInterviewQuestions {
+    private enum ArithmeticOps {
+        MUL, SUM
+    }
     public static void main(String[] args) {
 
         final int[] values = new int[]{2, 1, 3, 3, 2, 3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
+
+        System.out.println("has permutation " + interviewQuestions.hasPermutation(values, new int[]{2, 1, 3, 3, 2, 13}));
 
         System.out.println("does the array has duplicates? " + interviewQuestions.hasDuplicate(values));
 
@@ -26,6 +32,24 @@ public class ArrayInterviewQuestions {
 
         for (Integer[] val : result) System.out.println(Arrays.toString(val));
 
+    }
+
+    public boolean hasPermutation(int[] ar, int[] arr){
+        if (ar.length != arr.length) return false;
+
+        int arSum = arrayOps(ar,ArithmeticOps.SUM);
+        int arrSum = arrayOps(arr,ArithmeticOps.SUM);
+
+        int arMul = arrayOps(ar,ArithmeticOps.MUL);
+        int arrMul = arrayOps(arr,ArithmeticOps.MUL);
+
+        return arSum == arrSum && arMul == arrMul;
+    }
+
+    private int arrayOps(int[] ar, ArithmeticOps type){
+        int sum = Arrays.stream(ar).reduce(Integer::sum).getAsInt();
+        int mul = Arrays.stream(ar).reduce((a,b)->a*b).getAsInt();
+        return type.toString().equals("MUL") ? mul : sum;
     }
 
     public boolean hasDuplicate(int[] values){
