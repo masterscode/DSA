@@ -11,6 +11,10 @@ public class ArrayInterviewQuestions {
         final int[] values = new int[]{2, 1, 3, 3, 2, 3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
 
+        System.out.println("does the array has duplicates? " + interviewQuestions.hasDuplicate(values));
+
+        System.out.println("is the value unique? " + interviewQuestions.isUnique(values, 30));
+
         System.out.println("max product values: " + Arrays.toString(interviewQuestions.maxProduct(values)));
 
         System.out.println("the value is at index " + interviewQuestions.hasValue(values, 3));
@@ -22,6 +26,37 @@ public class ArrayInterviewQuestions {
 
         for (Integer[] val : result) System.out.println(Arrays.toString(val));
 
+    }
+
+    public boolean hasDuplicate(int[] values){
+        boolean result = true;
+
+        for (int i = 0; i < values.length; i++){
+            for (int j = i + 1; j < values.length; j++){
+                if (values[i] == values[j]){
+                    result = false;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+    public boolean isUnique(int[] values, int value){
+        boolean result = true;
+
+        for (int i = 0; i < values.length; i++){
+            if (values[i] == value){
+                for (int j = i + 1; j < values.length; j++){
+                    if (values[j] == value) {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     public int[] maxProduct(int[] values) {
