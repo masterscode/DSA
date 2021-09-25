@@ -15,6 +15,16 @@ public class ArrayInterviewQuestions {
         final int[] values = new int[]{2, 1, 3, 3, 2, 3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
 
+        System.out.println("the rotated array is>> " +
+                Arrays.deepToString(
+                        new int[][]{
+                                new int[]{1,2,3},
+                                new int[]{4,5,6},
+                                new int[]{7,8,9}
+                        }
+                )
+        );
+
         System.out.println("has permutation " + interviewQuestions.hasPermutation(values, new int[]{2, 1, 3, 3, 2, 13}));
 
         System.out.println("does the array has duplicates? " + interviewQuestions.hasDuplicate(values));
@@ -32,6 +42,15 @@ public class ArrayInterviewQuestions {
 
         for (Integer[] val : result) System.out.println(Arrays.toString(val));
 
+    }
+
+    public int[][] rotateImageTheWrongStyle(int[][] image){
+        int[][] result = new int[3][3];
+        int  len = image.length;
+        for (int i = 0; i < len; i++){
+            result[i] = new int[]{image[len - 1][i], image[len - 2][i], image[i][i]};
+        }
+        return result;
     }
 
     public boolean hasPermutation(int[] ar, int[] arr){
