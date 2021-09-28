@@ -1,5 +1,7 @@
 package linear.linked_lists;
 
+import java.util.LinkedList;
+
 public class SinglyLinkedList {
 
     Node head;
@@ -19,14 +21,67 @@ public class SinglyLinkedList {
         return head;
     }
 
+    public void insertInSinglyLinkedList(int value, int location){
+        Node node = new Node();
+        node.setValue(value);
+
+        if (this.head ==  null){
+            createSinglyLinkedList(value);
+            return;
+        }else if (location == 0){
+            node.next = head;
+            head = node;
+        }else if (location >= size){
+            tail.next = node;
+            node.next = null;
+            tail = node;
+        }else{
+            Node tempNode = head;
+
+            int index = 0;
+
+            while (index < location - 1){
+                tempNode = tempNode.next;
+                index++;
+            }
+
+            Node nextNode = tempNode.next;
+            tempNode.next = node;
+        }
+        size++;
+
+    }
+
+    public void traverseLinkedList(){
+        if (head == null) System.out.println("Linked list does not exist");
+        else{
+            Node tempNode = head;
+
+            for (int i =0; i<size; i++){
+                System.out.println(tempNode);
+                if (i != size - 1) System.out.println(" --> ");
+                tempNode = tempNode.next;
+            }
+            System.out.println("\n");
+        }
+    }
 
 
     public static void main(String[] args) {
-        var linkedList = new SinglyLinkedList();
-        var head = linkedList.createSinglyLinkedList(10);
-        Node next = head.next;
+//        SinglyLinkedList linkedList = new SinglyLinkedList();
+//        linkedList.createSinglyLinkedList(5);
+//        linkedList.insertInSinglyLinkedList(44,3);
 
-        System.out.println(next);
+        LinkedList linkedList = new LinkedList();
+
+        linkedList.addLast("the first last");
+        linkedList.addLast("the second last");
+        linkedList.addLast("the third last");
+
+
+        System.out.println(linkedList);
+
+
     }
 
 }
