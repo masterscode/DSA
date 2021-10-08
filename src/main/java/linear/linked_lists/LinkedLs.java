@@ -69,7 +69,7 @@ public class LinkedLs {
         }
 
         //set kthNode
-        while(endNode.next != null){
+        while(endNode != null){
             kthNode = kthNode.next;
             endNode = endNode.next;
         }
