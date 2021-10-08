@@ -18,6 +18,21 @@ public class Stacks {
         return result.toString();
     }
 
+    public boolean isBalanced(String str){
+        Stack<Character> stack = new Stack<>();
+
+
+        for(char ch : str.toCharArray()){
+            if (ch == '('){
+                stack.push(ch);
+            }
+            if (ch == ')'){
+                stack.pop();
+            }
+        }
+        return stack.isEmpty();
+    }
+
     public static void main(String[] args) {
         Stacks stack = new Stacks();
         System.out.println(stack.reverseString("emmanuel"));
