@@ -29,7 +29,7 @@ public class ArrayQue {
     }
 
     public void enqueue(int item){
-        if (count == items.length) throw new IllegalStateException();
+        if (isFull()) throw new IllegalStateException();
         items[rear] = item;
         rear = (rear + 1) % items.length;
         count++;
@@ -43,6 +43,14 @@ public class ArrayQue {
         return item;
     }
 
+
+    private boolean isFull(){
+        return count == items.length;
+    }
+
+    private boolean isEmpty(){
+        return items.length <= 0;
+    }
     public @Override String toString(){
         return Arrays.toString(items);
     }
