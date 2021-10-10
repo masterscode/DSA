@@ -21,7 +21,6 @@ public class Stacks {
     public boolean isBalanced(String str){
         Stack<Character> stack = new Stack<>();
 
-
         for(char ch : str.toCharArray()){
             if (ch == '('){
                 stack.push(ch);
