@@ -4,9 +4,9 @@ package linear.queues;
 import java.util.Stack;
 
 /**
- * @author emmanuel
- * @implNote since stacks works oppositely to ques, to implement a queue using a stack
+ * since stacks works oppositely to ques, to implement a queue using a stack
  * we'll use two stacks. the first stack will be used for enqueue ops while the second for dequeue ops
+ * @author emmanuel
  * @since 10 oct 2021.
  * @version beta
  */

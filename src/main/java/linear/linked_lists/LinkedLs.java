@@ -8,6 +8,16 @@ public class LinkedLs {
     private Node first; // alias for linked-list head
     private Node last; // alias for linked-list tails
 
+    public void reverse(){
+        var previous = first;
+        var current = previous.next;
+        var next = current.next;
+        while(current != null){
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+    }
 
     public void addLast(int value){
         var node = new Node(value);
