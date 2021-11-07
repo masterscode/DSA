@@ -20,7 +20,6 @@ public class ArrayQue {
         que.enqueue(21);
         que.enqueue(99);
 
-        System.out.println(que);
 
     }
 
