@@ -1,4 +1,4 @@
-import linear.array.Array;
+import data_structures.linear.array.Array;
 
 public class Main {
     public static void main(String[] args) {

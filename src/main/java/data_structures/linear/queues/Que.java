@@ -1,4 +1,4 @@
-package linear.queues;
+package data_structures.linear.queues;
 
 import java.util.Queue;
 import java.util.Stack;

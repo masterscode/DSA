@@ -1,4 +1,4 @@
-package linear.linked_lists;
+package data_structures.linear.linked_lists;
 
 import java.util.NoSuchElementException;
 

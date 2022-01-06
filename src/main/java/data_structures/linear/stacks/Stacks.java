@@ -1,4 +1,4 @@
-package linear.stacks;
+package data_structures.linear.stacks;
 
 import java.util.Arrays;
 import java.util.List;
