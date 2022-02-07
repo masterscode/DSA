@@ -7,76 +7,75 @@ import java.util.List;
 //find all occurrence of a number in an array
 // download and configure code metrics plugin
 public class ArrayInterviewQuestions {
-    private enum ArithmeticOps {
-        MUL, SUM
-    }
     public static void main(String[] args) {
 
         final int[] values = new int[]{2, 1, 3, 3, 2, 3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
 
-        System.out.println("the rotated array is>> " +
-                Arrays.deepToString(
-                        new int[][]{
-                                new int[]{1,2,3},
-                                new int[]{4,5,6},
-                                new int[]{7,8,9}
-                        }
-                )
-        );
-
-        System.out.println("has permutation " + interviewQuestions.hasPermutation(values, new int[]{2, 1, 3, 3, 2, 13}));
-
-        System.out.println("does the array has duplicates? " + interviewQuestions.hasDuplicate(values));
-
-        System.out.println("is the value unique? " + interviewQuestions.isUnique(values, 30));
-
-        System.out.println("max product values: " + Arrays.toString(interviewQuestions.maxProduct(values)));
-
-        System.out.println("the value is at index " + interviewQuestions.hasValue(values, 3));
-
-        interviewQuestions.findMissingNumber(interviewQuestions.getArray());
-
-
-        var result = interviewQuestions.pairSum(values, 4);
-
-        for (Integer[] val : result) System.out.println(Arrays.toString(val));
+        var result = interviewQuestions.reverseArray(interviewQuestions.getArray());
+        System.out.println(Arrays.toString(result));
+//        System.out.println("the rotated array is>> " +
+//                Arrays.deepToString(
+//                        new int[][]{
+//                                new int[]{1,2,3},
+//                                new int[]{4,5,6},
+//                                new int[]{7,8,9}
+//                        }
+//                )
+//        );
+//
+//        System.out.println("has permutation " + interviewQuestions.hasPermutation(values, new int[]{2, 1, 3, 3, 2, 13}));
+//
+//        System.out.println("does the array has duplicates? " + interviewQuestions.hasDuplicate(values));
+//
+//        System.out.println("is the value unique? " + interviewQuestions.isUnique(values, 30));
+//
+//        System.out.println("max product values: " + Arrays.toString(interviewQuestions.maxProduct(values)));
+//
+//        System.out.println("the value is at index " + interviewQuestions.hasValue(values, 3));
+//
+//        interviewQuestions.findMissingNumber(interviewQuestions.getArray());
+//
+//
+//        var result = interviewQuestions.pairSum(values, 4);
+//
+//        for (Integer[] val : result) System.out.println(Arrays.toString(val));
 
     }
 
-    public int[][] rotateImageTheWrongStyle(int[][] image){
+    public int[][] rotateImageTheWrongStyle(int[][] image) {
         int[][] result = new int[3][3];
-        int  len = image.length;
-        for (int i = 0; i < len; i++){
+        int len = image.length;
+        for (int i = 0; i < len; i++) {
             result[i] = new int[]{image[len - 1][i], image[len - 2][i], image[i][i]};
         }
         return result;
     }
 
-    public boolean hasPermutation(int[] ar, int[] arr){
+    public boolean hasPermutation(int[] ar, int[] arr) {
         if (ar.length != arr.length) return false;
 
-        int arSum = arrayOps(ar,ArithmeticOps.SUM);
-        int arrSum = arrayOps(arr,ArithmeticOps.SUM);
+        int arSum = arrayOps(ar, ArithmeticOps.SUM);
+        int arrSum = arrayOps(arr, ArithmeticOps.SUM);
 
-        int arMul = arrayOps(ar,ArithmeticOps.MUL);
-        int arrMul = arrayOps(arr,ArithmeticOps.MUL);
+        int arMul = arrayOps(ar, ArithmeticOps.MUL);
+        int arrMul = arrayOps(arr, ArithmeticOps.MUL);
 
         return arSum == arrSum && arMul == arrMul;
     }
 
-    private int arrayOps(int[] ar, ArithmeticOps type){
+    private int arrayOps(int[] ar, ArithmeticOps type) {
         int sum = Arrays.stream(ar).reduce(Integer::sum).getAsInt();
-        int mul = Arrays.stream(ar).reduce((a,b)->a*b).getAsInt();
+        int mul = Arrays.stream(ar).reduce((a, b) -> a * b).getAsInt();
         return type.toString().equals("MUL") ? mul : sum;
     }
 
-    public boolean hasDuplicate(int[] values){
+    public boolean hasDuplicate(int[] values) {
         boolean result = true;
 
-        for (int i = 0; i < values.length; i++){
-            for (int j = i + 1; j < values.length; j++){
-                if (values[i] == values[j]){
+        for (int i = 0; i < values.length; i++) {
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[i] == values[j]) {
                     result = false;
                     break;
                 }
@@ -85,12 +84,13 @@ public class ArrayInterviewQuestions {
 
         return result;
     }
-    public boolean isUnique(int[] values, int value){
+
+    public boolean isUnique(int[] values, int value) {
         boolean result = true;
 
-        for (int i = 0; i < values.length; i++){
-            if (values[i] == value){
-                for (int j = i + 1; j < values.length; j++){
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == value) {
+                for (int j = i + 1; j < values.length; j++) {
                     if (values[j] == value) {
                         result = false;
                         break;
@@ -167,6 +167,41 @@ public class ArrayInterviewQuestions {
         System.out.println(String.format("the missing number is %d", difference));
     }
 
+    public int[] reverseArray(int[] arg) {
+        for (int i = 0; i < arg.length / 2; i++) {
+            int rearIndex = arg.length - i - 1;
+            int temp = arg[i];
+            arg[i] = arg[rearIndex];
+            arg[rearIndex] = temp;
+        }
+        return arg;
+    }
+
+    public void shiftArrayPoc(int[] array) {
+        int next;
+        for (int i = 0; i < array.length; i++) {
+
+        }
+
+
+//        Object temp = pool[position];
+//
+//        for (int i = (position - 1); i >= 0; i--) {
+//            array[i+1] = array[i];
+//        }
+//
+//        array[0] = temp;
+    }
+
+    public int[] shiftArray(int[] array, int level) {
+        for (int i = 0; i <= level; i++) {
+            int rearIndex = (array.length - 1);
+            int rearItem = array[rearIndex];
+        }
+
+        return array;
+    }
+
     public int[] getArray() {
         return new int[]{
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
@@ -180,5 +215,9 @@ public class ArrayInterviewQuestions {
                 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
                 94, 95, 96, 97, 98, 99, 100
         };
+    }
+
+    private enum ArithmeticOps {
+        MUL, SUM
     }
 }
