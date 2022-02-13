@@ -1,9 +1,11 @@
 package design_pattterns.factory_pattern;
 
+/**
+ * @implNote for factory products I think abstract classes are better compared
+ * to using an interface
+ */
 public abstract class FactoryCreator {
-    public static void main(String[] args) {
-        ProductInterface product = new SubFactoryCreator().create();
-    }
+    private String channel;
 
-    public abstract ProductInterface create();
+    public abstract FactoryProduct create();
 }

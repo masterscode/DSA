@@ -1,15 +1,14 @@
 package design_pattterns.factory_pattern;
 
-public class ProductOne implements ProductInterface {
-    private String subject;
-    private String body;
+public class FactoryProductOne extends FactoryProduct {
 
-    public ProductOne(){
-        subject = "Product One subject";
-        body =  "Product One body";
+
+    public FactoryProductOne(){
+        this.subject = "Product One subject";
+        this.body =  "Product One body";
     }
 
-    public ProductOne(String subject, String body){
+    public FactoryProductOne(String subject, String body){
         this.subject = subject;
         this.body = body;
     }
