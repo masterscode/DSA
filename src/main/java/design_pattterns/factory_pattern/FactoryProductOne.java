@@ -1,5 +1,9 @@
 package design_pattterns.factory_pattern;
 
+
+import lombok.ToString;
+
+@ToString
 public class FactoryProductOne extends FactoryProduct {
 
 
