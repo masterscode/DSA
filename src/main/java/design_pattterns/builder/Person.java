@@ -8,7 +8,7 @@ import lombok.ToString;
 public class Person {
     private String firstName, lastName, gender, title;
 
-    private Person(PersonBuilder builder){
+    private Person(PersonBuilderImpl builder){
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.gender = builder.gender;
@@ -16,13 +16,13 @@ public class Person {
     }
 
     public static PersonBuilderInterface builder(){
-        return new PersonBuilder();
+        return new PersonBuilderImpl();
     }
 
-    private static class PersonBuilder implements PersonBuilderInterface {
+    private static class PersonBuilderImpl implements PersonBuilderInterface {
         private String firstName, lastName, gender, title;
 
-        public PersonBuilder(){
+        public PersonBuilderImpl(){
             //
         }
         @Override
