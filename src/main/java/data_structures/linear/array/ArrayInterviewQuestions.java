@@ -1,19 +1,24 @@
 package data_structures.linear.array;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 //find all occurrence of a number in an array
 // download and configure code metrics plugin
+@Slf4j
 public class ArrayInterviewQuestions {
     public static void main(String[] args) {
 
         final int[] values = new int[]{2, 1, 3, 3, 2, 3};
         ArrayInterviewQuestions interviewQuestions = new ArrayInterviewQuestions();
 
-        var result = interviewQuestions.reverseArray(interviewQuestions.getArray());
-        System.out.println(Arrays.toString(result));
+        var result = interviewQuestions.shiftArray(new int[]{1,2,3,4,5}, 2);
+        log.info(Arrays.toString(result));
 //        System.out.println("the rotated array is>> " +
 //                Arrays.deepToString(
 //                        new int[][]{
@@ -65,9 +70,9 @@ public class ArrayInterviewQuestions {
     }
 
     private int arrayOps(int[] ar, ArithmeticOps type) {
-        int sum = Arrays.stream(ar).reduce(Integer::sum).getAsInt();
-        int mul = Arrays.stream(ar).reduce((a, b) -> a * b).getAsInt();
-        return type.toString().equals("MUL") ? mul : sum;
+        return type.toString().equals("MUL") ?
+                Arrays.stream(ar).reduce((a, b) -> a * b).getAsInt()
+                : Arrays.stream(ar).reduce(Integer::sum).getAsInt();
     }
 
     public boolean hasDuplicate(int[] values) {
@@ -164,7 +169,7 @@ public class ArrayInterviewQuestions {
 
         final int difference = expectedSum - calculatedSum;
 
-        System.out.println(String.format("the missing number is %d", difference));
+        log.info(String.format("the missing number is %d", difference));
     }
 
     public int[] reverseArray(int[] arg) {
@@ -194,9 +199,14 @@ public class ArrayInterviewQuestions {
     }
 
     public int[] shiftArray(int[] array, int level) {
-        for (int i = 0; i <= level; i++) {
-            int rearIndex = (array.length - 1);
-            int rearItem = array[rearIndex];
+        for (int i = 0; i < level; i++) {
+            int maxIndex = array.length - 1;
+            int rearItem = array[maxIndex];
+
+            for (int j = maxIndex; j > 0; j--) {
+                array[j] = array[j -1];
+            }
+            array[0] = rearItem;
         }
 
         return array;

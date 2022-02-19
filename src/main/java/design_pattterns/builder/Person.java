@@ -6,13 +6,14 @@ import lombok.ToString;
 @ToString
 @Getter
 public class Person {
-    private String firstName, lastName, gender, title;
+    private String firstName, lastName, gender, title, email;
 
     private Person(PersonBuilderImpl builder){
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.gender = builder.gender;
         this.title = builder.title;
+        this.email = builder.email;
     }
 
     public static PersonBuilderInterface builder(){
@@ -20,7 +21,7 @@ public class Person {
     }
 
     private static class PersonBuilderImpl implements PersonBuilderInterface {
-        private String firstName, lastName, gender, title;
+        private String firstName, lastName, gender, title, email;
 
         public PersonBuilderImpl(){
             //
@@ -46,6 +47,12 @@ public class Person {
         @Override
         public PersonBuilderInterface title(String title) {
             this.title = title;
+            return this;
+        }
+
+        @Override
+        public PersonBuilderInterface email(String email) {
+            this.email = email;
             return this;
         }
 

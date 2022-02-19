@@ -1,5 +1,9 @@
 package design_pattterns.factory_pattern;
 
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ConcreteFactory extends Factory {
     private ConcreteFactory(){}
     @Override
@@ -8,10 +12,16 @@ public class ConcreteFactory extends Factory {
                 new FactoryProductOne("made from sub-creator", "the body is found here")
                 :new FactoryProductTwo();
     }
+    public FactoryProduct create(){
+        return channel.equalsIgnoreCase("productone")?
+                new FactoryProductOne("made from sub-creator", "the body is found here")
+                :new FactoryProductTwo();
+    }
 
 
     public static void main(String[] args) {
         FactoryProduct factoryProduct = new ConcreteFactory().create("productone");
-        System.out.println(factoryProduct.toString());
+        FactoryProduct product = new ConcreteFactory().create();
+        log.info(factoryProduct.toString());
     }
 }

@@ -5,7 +5,7 @@ package design_pattterns.factory_pattern;
  * to using an interface
  */
 public abstract class Factory {
-    private String channel;
+    protected String channel = "productone";
 
     public abstract FactoryProduct create(String product);
 }

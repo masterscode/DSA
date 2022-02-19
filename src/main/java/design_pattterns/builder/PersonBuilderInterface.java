@@ -5,5 +5,6 @@ public interface PersonBuilderInterface {
     PersonBuilderInterface lastName(String lastName);
     PersonBuilderInterface gender(String gender);
     PersonBuilderInterface title(String title);
+    PersonBuilderInterface email(String email);
     Person build();
 }
