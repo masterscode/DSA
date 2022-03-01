@@ -1,6 +1,5 @@
 package design_pattterns;
 
-import java.nio.file.Files;
 
 public class MethodChainingPattern {
     private String chainingName;
