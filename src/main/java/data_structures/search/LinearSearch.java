@@ -21,13 +21,13 @@ public class LinearSearch {
         for (int index = 0; index < halfLength; index++) {
             if (array[index] == v) {
                 result = index;
-                break;
             }
             int rearIndex =array.length - 1-  index;
             if (array[rearIndex] == v){
                 result = rearIndex;
-                break;
             }
+
+            if (result >= 0)break;
         }
         return result;
     }
@@ -36,7 +36,7 @@ public class LinearSearch {
 
 
     public static void main(String[] args) {
-//        log.info(String.valueOf(LinearSearch.lSearch(new int[]{1, 2, 3, 4, 3, 3, 3, 5, 6, 3, 7, 8, 9}, 15)));
+        log.info(String.valueOf(LinearSearch.lSearch(new int[]{1, 2, 3, 4, 3, 3, 3, 5, 6, 3, 7, 8, 9}, 15)));
         log.info(String.valueOf(LinearSearch.halfSearch(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 3}, 3)));
     }
 }
