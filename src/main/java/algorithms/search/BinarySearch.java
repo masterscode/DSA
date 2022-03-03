@@ -1,4 +1,4 @@
-package data_structures.search;
+package algorithms.search;
 
 import lombok.extern.slf4j.Slf4j;
 
