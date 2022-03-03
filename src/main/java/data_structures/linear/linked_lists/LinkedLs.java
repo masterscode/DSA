@@ -5,81 +5,83 @@ import java.util.NoSuchElementException;
 public class LinkedLs {
 
     private int size;
-    private Node first; // alias for linked-list head
-    private Node last; // alias for linked-list tails
+    private Node<Integer> head; // alias for linked-list head
+    private Node<Integer> tail; // alias for linked-list tails
 
-    public void reverse(){
-        var previous = first;
+    public void reverse() {
+        var previous = head;
         var current = previous.next;
         var next = current.next;
-        while(current != null){
+        while (current != null) {
             current.next = previous;
             previous = current;
             current = next;
         }
     }
 
-    public void addLast(int value){
-        var node = new Node(value);
+    public void addLast(int value) {
+        Node node = new Node<Integer>(value);
         // 1. check to see if the linked-list is empty
-        if (isEmpty())  first = last = node;
-        else{
-            last.next = node;
-            last = node;
-        }
-    }
-
-    public void addFirst(int value){
-        Node  node  = new Node(value);
-        if (isEmpty()) first = last = node;
+        if (isEmpty()) head = tail = node;
         else {
-            node.next = first;
-            first = node;
+            tail.next = node;
+            tail = node;
         }
     }
 
-    private int indexOf(int item){
+    public void addFirst(int value) {
+        Node<Integer> node = new Node<>(value);
+        if (isEmpty()) head = tail = node;
+        else {
+            node.next = head;
+            head = node;
+        }
+    }
+
+    private int indexOf(int item) {
         int index = 0;
-        var current  = first;
-        while(current.next != null){
+        var current = head;
+        while (current.next != null) {
             if (current.value == item) return index;
             current = current.next;
             index++;
         }
-        return  -1;
+        return -1;
     }
 
-    public boolean contains(int value){
+    public boolean contains(int value) {
         return indexOf(value) != -1;
     }
 
-    private boolean isEmpty(){return first == null;}
+    private boolean isEmpty() {
+        return head == null;
+    }
 
-    public void removeFirst(){
+    public void removeFirst() {
         if (isEmpty()) throw new NoSuchElementException();
 
         //if there is only one element on the list
-        if (first ==  last) {
-            first = last = null;
+        if (head == tail) {
+            head = tail = null;
             return;
         }
 
-        final Node second = first.next;
-        first.next = null;
-        first = second;
+        final Node second = head.next;
+        head.next = null;
+        head = second;
     }
 
-    public int getKthNodeValue(int k){
-        var kthNode = first;
-        var endNode = first;
+    public int getKthNodeValue(int k) {
+        var kthNode = head;
+        var endNode = head;
 
         //set current and end kth length apart
-        for (int i = 0; i <= k;i++){
+        for (int i = 0; i <= k; i++) {
             endNode = endNode.next;
         }
 
         //set kthNode
-        while(endNode != null){
+        while (endNode != null) {
             kthNode = kthNode.next;
             endNode = endNode.next;
         }
@@ -87,63 +89,81 @@ public class LinkedLs {
         return kthNode.value;
     }
 
-    public void removeLast(){
+    public void removeLast() {
         if (isEmpty()) throw new NoSuchElementException();
-        last = getPrevious(last);
-        last.next = null;
+        tail = getPrevious(tail);
+        tail.next = null;
     }
 
-    public int[] toArray(){
+    public int[] toValueArray() {
         final int[] array = new int[size];
-        var current  = first;
+        var current = head;
         int index = 0;
-        while (current != null){
+        while (current != null) {
             array[index++] = current.value;
             current = current.next;
         }
         return array;
     }
 
-    private void setSize(OP type){
-        if (OP.DECREMENT == type)   size--;
-        else    size++;
+    public Node[] toArray() {
+        final Node[] array = new Node[size];
+        var current = head;
+        int index = 0;
+        while (current != null) {
+            array[index++] = current;
+            current = current.next;
+        }
+        return array;
     }
-    public Integer size(){
+
+    private void setSize(OP type) {
+        if (OP.DECREMENT == type) size--;
+        else size++;
+    }
+
+    public Integer size() {
         return size;
     }
-    private Node getPrevious(Node node){
-        var current = first;
-        while (current != null){
-            if (current.next == node) return  current;
+
+    private Node getPrevious(Node<Integer> node) {
+        var current = head;
+        while (current != null) {
+            if (current.next == node) return current;
             current = current.next;
         }
         return null;
     }
 
-    private class Node{
-        private final int value;
-        private Node next;
+    private enum OP {INCREMENT, DECREMENT}
 
-        public Node (int value){
-            this.value = value;
-        }
+    public LinkedLs partitionBy(int x) {
+
+        Node currentNode = head;
+
+
+        return this;
     }
 
-    private  enum OP{INCREMENT, DECREMENT}
+    public LinkedLs partitionBy(LinkedLs l, int x) {
 
-    public static void main(String[] args) {
+        Node<Integer> currentNode = l.head;
+        l.tail = l.head;
 
-        LinkedLs linkedList = new LinkedLs();
+        while (currentNode != null) {
+            Node<Integer> next = currentNode.next;
+            if (currentNode.value < x) {
+                currentNode.next = l.head;
+                l.head = currentNode;
+            } else {
+                l.tail.next = currentNode;
+                l.tail = currentNode;
+            }
 
-        linkedList.addFirst(40);
-        linkedList.addFirst(4);
-        linkedList.addFirst(40000);
+            currentNode = next;
+        }
+        l.tail.next = null;
+        return l;
 
-        int a = 4, b = 9;
-
-        a = b + a - b;
-        b = b - a + a;
-
-        System.out.println(b);
     }
 }
