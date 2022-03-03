@@ -4,11 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BinarySearch {
-    public static void main(String[] args) {
-        log.info(String.valueOf(BinarySearch.bSearch(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 5)));
-    }
 
-    private static int bSearch(int[] array, int v) {
+
+    public static int bSearch(int[] array, int v) {
 
         int start = 0;
         int end = array.length - 1;
