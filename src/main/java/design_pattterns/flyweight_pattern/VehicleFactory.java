@@ -7,6 +7,6 @@ public class VehicleFactory {
     private static final Map<Color, Vehicle> vehicleCache = new HashMap<>();
 
     public static Vehicle createVehicle(Color color){
-        return vehicleCache.computeIfAbsent(color, uncachedColor -> new Car(color, new Engine()));
+        return vehicleCache.computeIfAbsent(color, uncachedColor -> new Car(uncachedColor, new Engine()));
     }
 }
