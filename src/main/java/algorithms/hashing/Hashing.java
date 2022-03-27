@@ -9,21 +9,19 @@ import java.util.Map;
 @Slf4j
 public class Hashing {
     public static void main(String[] args) {
-//        System.out.println(Hashing.mod("emmanuel", 24));
 
-        System.out.println(firstNonRepeatedChars("jjcc"));
+        System.out.println(hash("emmanuel", 200));
     }
 
     public static int mod(int v, int cellSize) {
         return v % cellSize;
     }
 
-    public static int mod(String value, int cellNumber) {
+    public static int hash(String value, int cellNumber) {
         int total = 0;
-        final int vLength = value.length();
-
-        for (int i = 0; i < vLength; i++) {
-            total += value.charAt(i);
+        char[] chars = value.toCharArray();
+        for (char ch: chars) {
+            total += ch;
         }
         return total % cellNumber;
     }
