@@ -30,16 +30,16 @@ public class ToptalCodeTest {
         // write your code in Java SE 8
 
         int count = 0;
-        int total = 0;
+        int seatedPersons = 0;
         List<Integer> seats = Arrays.stream(S).boxed().collect(Collectors.toList());
 
         int allPersons = Arrays.stream(P).sum();
         seats.sort(Collections.reverseOrder());
 
         for (int seat : seats) {
-            total += seat;
+            seatedPersons += seat;
             count++;
-            if (total >= allPersons) break;
+            if (seatedPersons >= allPersons) break;
         }
 
         return count;
@@ -74,6 +74,7 @@ public class ToptalCodeTest {
 //            // write your code in Java SE 8
 //
 //            String[] splittedMessage = message.split(" ");
+    //use StringBuilder for var result
 //            String result = "";
 //
 //            for (String word : splittedMessage) {
