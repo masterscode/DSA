@@ -7,7 +7,7 @@ public class Easy {
     public static void main(String[] args) {
 
         System.out.println(
-                Easy.countingValleys(8, "DDUUUUDD")
+                Easy.solution(285, 20)
         );
     }
 
@@ -127,25 +127,61 @@ public class Easy {
 
         for (int counter = 0; counter < path.length(); counter++) {
 
+            int valleyCount = 0;
 
-            if (counter < path.length() && path.charAt(counter) == valley) {
+            if (path.charAt(counter) == valley) {
                 for (int index = counter; index < path.length(); index++) {
 
-                    if (path.charAt(index) != valley && (index - counter) >= 1) {
-                        System.out.println(index);
-                        System.out.println(counter);
-                        result += 1;
-                        counter = index;
-                        break;
-                    } else if (path.charAt(index) != valley) {
+                    if (path.charAt(index) != valley && valleyCount > 1) {
                         counter = index;
                         break;
                     }
+                    valleyCount += 1;
                 }
             }
+            if (valleyCount > 1) result++;
         }
-
         return result;
     }
+
+    public static int countingValleysX(int steps, String path) {
+
+        int v = 0;     // # of valleys
+        int lvl = 0;   // current level
+        for (char c : path.toCharArray()) {
+            if (c == 'U') ++lvl;
+            if (c == 'D') --lvl;
+
+            // if we just came UP to sea level
+            if (lvl == 0 && c == 'U')
+                ++v;
+
+        }
+
+        return v;
+    }
+
+    public static int solution(int N, int k) {
+
+        var nums = new ArrayList<>(Arrays.stream(String.valueOf(N).split("")).map(Integer::parseInt).toList());
+        StringBuilder sb = new StringBuilder();
+        for (int in = 0; in < nums.size(); in++) {
+            if (k <= 0) break;
+            var current = nums.get(in);
+
+            int diff = 9 - current;
+            if (diff > k) {
+                diff = k;
+                k = 0;
+            } else {
+                k = k - diff;
+            }
+            nums.set(in, Integer.sum(current, diff));
+
+        }
+        nums.forEach(sb::append);
+        return Integer.parseInt(sb.toString());
+    }
+
 
 }
