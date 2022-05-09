@@ -1,13 +1,14 @@
 package hackerrank;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Easy {
     public static void main(String[] args) {
 
         System.out.println(
-                Easy.solution(285, 20)
+                Easy.climbingLeaderboard(List.of(100, 100, 50, 40, 40, 20, 10), List.of(5, 25, 50, 120))
         );
     }
 
@@ -161,7 +162,7 @@ public class Easy {
         return v;
     }
 
-    public static int solution(int N, int k) {
+    public static int talentMissionAlgorithm(int N, int k) {
 
         var nums = new ArrayList<>(Arrays.stream(String.valueOf(N).split("")).map(Integer::parseInt).toList());
         StringBuilder sb = new StringBuilder();
@@ -183,5 +184,57 @@ public class Easy {
         return Integer.parseInt(sb.toString());
     }
 
+    public static int getMoneySpent(List<Integer> keyboards, List<Integer> drives, int budget) {
+        int result = -1;
 
+        for (Integer keyboard : keyboards) {
+            for (Integer drive : drives) {
+                int sum = keyboard + drive;
+                if (sum >= result && sum <= budget) result = sum;
+            }
+        }
+
+        return result;
+    }
+
+    public static int pickingNumbers(List<Integer> a) {
+        // Write your code here
+        List<List<Integer>> subs = new ArrayList<>();
+        a = a.stream().sorted().collect(Collectors.toList());
+        for (int in = 0; in < a.size(); in++) {
+            List<Integer> sub = new ArrayList<>();
+            sub.add(a.get(in));
+
+            for (int j = in; j < a.size(); j++) {
+                int diff = a.get(in) - a.get(j) < 0 ? -1 * (a.get(in) - a.get(j)) : a.get(in) - a.get(j);
+                if (diff <= 1) sub.add(a.get(j));
+            }
+            sub.remove(0);
+            subs.add(sub);
+        }
+
+        return Collections.max(
+                subs.stream().map(List::size).collect(Collectors.toList())
+        );
+
+    }
+
+    public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
+        // Write your code here
+        List<Integer> scoreBoard = new ArrayList<>();
+        scoreBoard.addAll(ranked);
+        scoreBoard.addAll(player);
+        scoreBoard.add(0);
+        AtomicInteger position = new AtomicInteger(0);
+        var s = scoreBoard.stream().distinct().sorted(Comparator.reverseOrder()).collect(Collectors.toMap(k -> k, v -> position.getAndIncrement()));
+
+        System.out.println(s);
+        List<Integer> result = new ArrayList<>();
+
+        for (int playerScore : player) {
+            result.add(s.get(playerScore));
+        }
+
+        return result;
+    }
 }
