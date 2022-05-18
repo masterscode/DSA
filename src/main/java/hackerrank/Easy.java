@@ -3,12 +3,17 @@ package hackerrank;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Easy {
     public static void main(String[] args) {
 
+//        System.out.println(
+//                Easy.climbingLeaderboard(List.of(100, 100, 50, 40, 40, 20, 10), List.of(5, 25, 50, 120))
+//        );
+
         System.out.println(
-                Easy.climbingLeaderboard(List.of(100, 100, 50, 40, 40, 20, 10), List.of(5, 25, 50, 120))
+                beautifulDays(20, 23, 6)
         );
     }
 
@@ -236,5 +241,25 @@ public class Easy {
         }
 
         return result;
+    }
+
+    //TODO: refactor this method to use a single loop to solve the algorithm
+    public static int beautifulDays(int i, int j, int k) {
+        // Write your code here
+        short count = 0;
+        var range = IntStream.rangeClosed(i, j).boxed().collect(Collectors.toList());
+
+        var reverseRange = range.stream().map(num -> {
+            StringBuilder stringBuilder = new StringBuilder(String.valueOf(num)).reverse();
+            return Integer.parseInt(stringBuilder.toString());
+        }).collect(Collectors.toList());
+
+
+        for (int in = 0; in < range.size(); in++) {
+            var diff = range.get(in) - reverseRange.get(in);
+            if (diff % k == 0) count += 1;
+        }
+
+        return count;
     }
 }
