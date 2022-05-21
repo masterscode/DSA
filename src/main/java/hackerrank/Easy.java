@@ -262,4 +262,12 @@ public class Easy {
 
         return count;
     }
+
+    public static int findDigits(int n) {
+        // Write your code here
+        return (int) Arrays.stream(String.valueOf(n).split("")).map(s ->Integer.parseInt(s)).filter(ns -> {
+            if (ns <= 0 )return false;
+            return (n % ns) == 0;
+        }).count();
+    }
 }
