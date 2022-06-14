@@ -8,13 +8,153 @@ import java.util.stream.IntStream;
 public class Easy {
     public static void main(String[] args) {
 
-//        System.out.println(
-//                Easy.climbingLeaderboard(List.of(100, 100, 50, 40, 40, 20, 10), List.of(5, 25, 50, 120))
-//        );
 
         System.out.println(
-                beautifulDays(20, 23, 6)
+                minimumNumberX(9, "Ab1")
         );
+    }
+
+    public static int minimumNumber(int n, String password) {
+        // Return the minimum number of characters to make the password strong
+        var numbers = Set.of("0123456789".split(""));
+        var lower_case = Set.of("abcdefghijklmnopqrstuvwxyz".split(""));
+        var upper_case = Set.of("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
+        var special_characters = Set.of("!@#$%^&*()-+".split(""));
+
+        Map<String, Integer> x = Map.of(
+                "lower", 0,
+                "upper", 0,
+                "numbers", 0,
+                "special", 0
+        );
+
+        Map<String, Integer> registry = new HashMap<>(x);
+
+
+        for (var ch : password.split("")) {
+            if (numbers.contains(ch)) {
+                registry.put("numbers", registry.get("numbers") + 1);
+            }
+            if (lower_case.contains(ch)) {
+                registry.put("lower", registry.get("lower") + 1);
+            }
+            if (upper_case.contains(ch)) {
+                registry.put("upper", registry.get("upper") + 1);
+            }
+            if (special_characters.contains(ch)) {
+                registry.put("special", registry.get("special") + 1);
+            }
+        }
+
+        System.out.println(registry);
+
+        var missing = registry.values().stream().filter(v -> v == 0).count();
+
+        return password.length();
+
+
+    }
+
+    static int minimumNumberX(int n, String password) {
+
+        int lc = 0, uc = 0, no = 0, sc = 0;
+        int sum;
+
+        String lowercase = ".*[a-z]+.*";
+        String uppercase = ".*[A-Z]+.*";
+        String num = ".*[0-9]+.*";
+        String specialchar = ".*[-!@#$%^&*()+]+.*";
+        //Regex for pattern matching
+
+        if (!(password.matches(lowercase))) lc++;
+        //if there is no match to a lowercase,"lc" is increased by 1.
+
+        if (!(password.matches(uppercase))) uc++;
+        //if there is no match to an uppercase,"uc" is increased by 1.
+
+        if (!(password.matches(num))) no++;
+        //if there is no match to a number,"no" is increased by 1.
+
+        if (!(password.matches(specialchar))) sc++;
+        //if there is no match to a specialCharacter,"sc" is increased by 1.
+
+
+        sum = lc + uc + sc + no;
+        return (sum>(6-n))?sum:(6-n);
+
+
+    }
+
+    public static String wordSplitTunga(String[] word) {
+        String main = word[0];
+        List<String> others = Arrays.asList(word[1].split(","));
+
+
+        for (var w : others) {
+            var firstPart = main.substring(0, w.length());
+            var otherPart = main.substring(w.length());
+
+            if (firstPart.equals(w) && others.contains(otherPart)) {
+                return String.format("%s,%s", firstPart, otherPart);
+            }
+
+        }
+
+        return "Not Possible";
+    }
+
+    public static int maxSumTuringTest(List<Integer> A, int k) {
+        int result = -1;
+        for (int i = 0; i < A.size(); i++) {
+
+            for (int j = 0; j < A.size(); j++) {
+                int current = A.get(i);
+                int next = A.get(j);
+                int sum = Integer.sum(current, next);
+                if (sum < k && sum >= result) {
+                    result = sum;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static int camelcase(String s) {
+        // Write your code here
+        int wordsCount = 1;
+
+        for (var word : s.split("")) {
+            if (word.equals(word.toUpperCase())) wordsCount++;
+        }
+        int betterAlt = s.length() - s.replaceAll("[A-Z]", "").length() + 1; //a better alt imo
+
+        return wordsCount;
+    }
+
+    public static void x(String s) {
+    }
+
+    public static String superReducedString(String s) {
+        // Write your code here
+        int count = 0;
+        StringBuffer stringBuffer = new StringBuffer(s);
+        while (count++ <= s.length()) {
+
+            for (int i = 1; i < stringBuffer.length(); i++) {
+                var prevInd = i - 1;
+
+                var prevChar = stringBuffer.charAt(prevInd);
+                var currentChar = stringBuffer.charAt(i);
+
+                if (currentChar == prevChar) {
+                    stringBuffer.deleteCharAt(i);
+                    stringBuffer.deleteCharAt(prevInd);
+                }
+            }
+
+        }
+
+        return stringBuffer.isEmpty() ? "Empty String" : stringBuffer.toString();
     }
 
     public static int birthday(List<Integer> s, int d, int m) {
@@ -265,8 +405,8 @@ public class Easy {
 
     public static int findDigits(int n) {
         // Write your code here
-        return (int) Arrays.stream(String.valueOf(n).split("")).map(s ->Integer.parseInt(s)).filter(ns -> {
-            if (ns <= 0 )return false;
+        return (int) Arrays.stream(String.valueOf(n).split("")).map(s -> Integer.parseInt(s)).filter(ns -> {
+            if (ns <= 0) return false;
             return (n % ns) == 0;
         }).count();
     }
