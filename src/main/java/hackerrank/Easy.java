@@ -1,5 +1,7 @@
 package hackerrank;
 
+import data_structures.linear.array.Array;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -12,6 +14,13 @@ public class Easy {
         System.out.println(
                 hasHackerRankInText("haacckkerrannkk")
         );
+    }
+
+    public static String pangrams(String s) {
+        // Write your code here
+        Set<String> alphabets = new HashSet<>(Arrays.asList(s.replaceAll(" ", "").toUpperCase().split("")));
+
+        return alphabets.size() == 26 ? "pangram" : "not pangram";
     }
 
     public static String hackerrankInString(String s) {
