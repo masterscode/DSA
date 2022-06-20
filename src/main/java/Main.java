@@ -11,6 +11,8 @@ public class Main {
 //        ar.remove(1);
         System.out.println(ar.indexOf(20));
 //        System.out.println(ar);
+
+
     }
 
     public static String negSubstring(String str){

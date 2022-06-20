@@ -10,8 +10,62 @@ public class Easy {
 
 
         System.out.println(
-                minimumNumberX(9, "Ab1")
+                hasHackerRankInText("haacckkerrannkk")
         );
+    }
+
+    public static String hackerrankInString(String s) {
+        // Write your code here
+
+        StringBuilder builder = new StringBuilder(Character.toString(s.charAt(0)));
+
+        for (int i = 0; i < s.length(); i++) {
+           var last = builder.charAt(builder.length() - 1);
+           if (s.charAt(i) != last) {
+               builder.append(s.charAt(i));
+           }
+
+        }
+
+        return builder.toString().equals("hackerank") ? "YES": "NO";
+
+    }
+    public static String hackerrankInStringX(String s) {
+        // Write your code here
+
+        String str = "hackerrank";
+        if (s.length() < str.length()) {
+            return "NO";
+        }
+        int j = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (j < str.length() && s.charAt(i) == str.charAt(j)) {
+                j++;
+            }
+        }
+
+        return j == str.length() ? "YES" : "NO";
+    }
+
+    private static String hasHackerRankInText(String text) {
+        Queue<String> hackerrank = new ArrayDeque<>(Arrays.asList("hackerrank".split("")));
+        for (char c : text.toCharArray()) {
+            if (c == hackerrank.peek().charAt(0))
+                hackerrank.remove();
+
+            if (hackerrank.isEmpty()) return "YES";
+        }
+
+        return "NO";
+    }
+    public static int marsExploration(String s) {
+        // Write your code here
+        String sos = "SOS";
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != sos.charAt(i % 3)) count++;
+        }
+        return count;
     }
 
     public static int minimumNumber(int n, String password) {
@@ -80,43 +134,9 @@ public class Easy {
 
 
         sum = lc + uc + sc + no;
-        return (sum>(6-n))?sum:(6-n);
+        return (sum > (6 - n)) ? sum : (6 - n);
 
 
-    }
-
-    public static String wordSplitTunga(String[] word) {
-        String main = word[0];
-        List<String> others = Arrays.asList(word[1].split(","));
-
-
-        for (var w : others) {
-            var firstPart = main.substring(0, w.length());
-            var otherPart = main.substring(w.length());
-
-            if (firstPart.equals(w) && others.contains(otherPart)) {
-                return String.format("%s,%s", firstPart, otherPart);
-            }
-
-        }
-
-        return "Not Possible";
-    }
-
-    public static int maxSumTuringTest(List<Integer> A, int k) {
-        int result = -1;
-        for (int i = 0; i < A.size(); i++) {
-
-            for (int j = 0; j < A.size(); j++) {
-                int current = A.get(i);
-                int next = A.get(j);
-                int sum = Integer.sum(current, next);
-                if (sum < k && sum >= result) {
-                    result = sum;
-                }
-            }
-        }
-        return result;
     }
 
     public static int camelcase(String s) {
@@ -129,9 +149,6 @@ public class Easy {
         int betterAlt = s.length() - s.replaceAll("[A-Z]", "").length() + 1; //a better alt imo
 
         return wordsCount;
-    }
-
-    public static void x(String s) {
     }
 
     public static String superReducedString(String s) {
@@ -307,28 +324,6 @@ public class Easy {
         return v;
     }
 
-    public static int talentMissionAlgorithm(int N, int k) {
-
-        var nums = new ArrayList<>(Arrays.stream(String.valueOf(N).split("")).map(Integer::parseInt).toList());
-        StringBuilder sb = new StringBuilder();
-        for (int in = 0; in < nums.size(); in++) {
-            if (k <= 0) break;
-            var current = nums.get(in);
-
-            int diff = 9 - current;
-            if (diff > k) {
-                diff = k;
-                k = 0;
-            } else {
-                k = k - diff;
-            }
-            nums.set(in, Integer.sum(current, diff));
-
-        }
-        nums.forEach(sb::append);
-        return Integer.parseInt(sb.toString());
-    }
-
     public static int getMoneySpent(List<Integer> keyboards, List<Integer> drives, int budget) {
         int result = -1;
 
@@ -411,3 +406,20 @@ public class Easy {
         }).count();
     }
 }
+
+/*
+Top 10 Sites for your career
+1. Linkedin
+2. Indeed
+3. Naukri
+4. Monster
+5. JobBait
+6. Careercloud
+7. Dice
+8. CareerBuilder
+9. Jibberjobber
+10. Glassdoor
+11. Upwork
+12. Fiverr
+13. Freelance.com
+ */

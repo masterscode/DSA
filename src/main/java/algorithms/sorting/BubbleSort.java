@@ -6,7 +6,7 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] array = new int[]{2, 5, 6, 4, 6, 7, 1};
-        sort(array);
+        bubble_sort(array);
         System.out.println(Arrays.toString(array));
     }
 
@@ -24,5 +24,19 @@ public class BubbleSort {
         }
     }
 
+    public static void bubble_sort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+
+            for (int j = 1; j < (array.length ); j++) {
+                int cur = j;
+                int prev = j -1;
+                if (array[cur] < array[prev]) {
+                    int temp = array[cur];
+                    array[cur] = array[prev];
+                    array[prev] = temp;
+                }
+            }
+        }
+    }
 
 }

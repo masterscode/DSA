@@ -6,8 +6,9 @@ public class SelectionSort {
 
 
     public static void main(String[] args) {
-        int[] array = new int[]{2, 5, 6, 4, 6, 7, 1};
-        new SelectionSort().sort(array);
+        int[] array = new int[]{90, 200};
+//        new SelectionSort().sort(array);
+        s_sort(array);
         System.out.println(Arrays.toString(array));
     }
 
@@ -19,6 +20,20 @@ public class SelectionSort {
                 Sort.bubble(array, minIndex, i);
             }
 
+        }
+    }
+
+    public static void s_sort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+
+            int min = i;
+            for (int j = i; j < array.length; j++) {
+                if (array[j] < array[min]) min = j;
+            }
+
+            var temp = array[i];
+            array[i] = array[min];
+            array[min] = temp;
         }
     }
 }
