@@ -12,10 +12,71 @@ public class Easy {
 
 
         System.out.println(
-                hasHackerRankInText("haacckkerrannkk")
+                Arrays.toString(uniq(new String[]{"emmanuel"}, new String[]{"emmanuel"}))
         );
+//        System.out.println(
+//                hasHackerRankInText("haacckkerrannkk")
+//        );
     }
 
+
+    public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
+        // Write your code here
+        List<Integer>possibleWeights = new ArrayList<>();
+        List<String> substrings = new ArrayList<>();
+
+       int pointer = 0;
+       while(pointer < s.length()){
+           StringBuilder subs = new StringBuilder();
+           for (int i = pointer; i < s.length(); i++) {
+
+//               if((s.charAt(i)))
+
+           }
+       }
+        return Collections.emptyList();
+
+    }
+
+    public static String[] uniq(String[] names1, String[] names2){
+        var names = Arrays.stream(names1).collect(Collectors.toList());
+        names.addAll(Arrays.asList(names2));
+
+        return names.stream().distinct().toArray(String[]::new);
+    }
+
+    public static int getAlphaKeys(String alpha){
+        Map<String, Integer> alph = new LinkedHashMap<>();
+        alph.put("a", 1);
+        alph.put("b", 2);
+        alph.put("c", 3);
+        alph.put("d", 4);
+        alph.put("e", 5);
+        alph.put("f", 6);
+        alph.put("g", 7);
+        alph.put("h", 8);
+        alph.put("i", 9);
+        alph.put("j", 10);
+        alph.put("k", 11);
+        alph.put("l", 12);
+        alph.put("m", 13);
+        alph.put("n", 14);
+        alph.put("o", 15);
+        alph.put("p", 16);
+        alph.put("q", 17);
+        alph.put("r", 18);
+        alph.put("s", 19);
+        alph.put("t", 20);
+        alph.put("u", 21);
+        alph.put("v", 22);
+        alph.put("w", 23);
+        alph.put("x", 24);
+        alph.put("y", 25);
+        alph.put("z", 26);
+
+
+        return alph.get(alpha);
+    }
     public static String pangrams(String s) {
         // Write your code here
         Set<String> alphabets = new HashSet<>(Arrays.asList(s.replaceAll(" ", "").toUpperCase().split("")));

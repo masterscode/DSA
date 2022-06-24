@@ -1,5 +1,6 @@
 package assessments;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +24,24 @@ public class Tunga {
         return "Not Possible";
     }
 
+    public static String isPalindrome(String s){
+        List<String> ex = new ArrayList<>();
+        int i = 0;
+        int j = s.length() - 1;
+        if (s.equals(new StringBuilder(s).reverse().toString()))return "palindrome";
+
+        while (i < j){
+            if (s.charAt(i) == s.charAt(j)){
+                i++;
+                j--;
+                continue;
+            }
+            ex.add(Character.toString(s.charAt(i)));
+            i++;
+        }
+
+        return s.length()  - ex.size() <= 2 ? "not possible": String.join("", ex);
+    }
 
 //    const isPalindrome = str => {
 //    const outliers = [];
