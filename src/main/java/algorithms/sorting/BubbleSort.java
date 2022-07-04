@@ -25,17 +25,19 @@ public class BubbleSort {
     }
 
     public static void bubble_sort(int[] array) {
-        for (int i = 1; i < array.length; i++) {
-
-            for (int j = 1; j < (array.length ); j++) {
+        for (int i = 0; i < array.length; i++) {
+            boolean sorted = true;
+            for (int j = 1; j < (array.length - i ); j++) {
                 int cur = j;
                 int prev = j -1;
                 if (array[cur] < array[prev]) {
                     int temp = array[cur];
                     array[cur] = array[prev];
                     array[prev] = temp;
+                    sorted = false;
                 }
             }
+            if(sorted) break;
         }
     }
 

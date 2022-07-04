@@ -1,9 +1,12 @@
 package leetcode;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class HighestRankedKItems {
-
 
     public static class Cell implements Comparable<Cell> {
         int r;
@@ -45,7 +48,7 @@ public class HighestRankedKItems {
         maxPrice = pricing[1];
         row = grid.length;
         col = grid[0].length;
-        int[][] nextIndexes = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        int[][] nextIndexes = new int[][] { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
         boolean[] visited = new boolean[row * col];
 
