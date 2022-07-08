@@ -34,7 +34,7 @@ public class InsertionSort {
             int current = array[i];
             int j = i - 1;
             while(j >= 0 && j > current){
-                
+                array[j + 1] = array[j];
                 j--; 
             }
         }
