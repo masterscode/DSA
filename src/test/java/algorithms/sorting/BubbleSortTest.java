@@ -3,18 +3,12 @@ package algorithms.sorting;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BubbleSortTest {
+class BubbleSortTest {
 
     BubbleSort underTest;
 
-    @BeforeEach
-    void setUp(){
-        underTest = new BubbleSort();
-    }
-    
     @Test
     void shouldSortCollectionInAscendingOrder(){
         int[] actual = new int[]{9,3,5,0};
