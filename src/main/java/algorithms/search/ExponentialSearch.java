@@ -18,6 +18,7 @@ public class ExponentialSearch {
                 continue;
             }
 
+            //replace linear search with binary search
             for (int j = 0; j < endPointer; j++) {
                 if (array[j] == x) return true;
             }
