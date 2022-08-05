@@ -3,6 +3,8 @@ package threads;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Semaphore;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -77,6 +79,9 @@ public class StopThread {
                 temp = temp.multiply(new BigInteger(Long.toString(i)));
             }
 
+            BigInteger finalTemp = temp;
+            CompletableFuture.runAsync(()-> log.info("", finalTemp));
+            Semaphore semaphore = new Semaphore(MIN_PRIORITY);
             return temp;
         }
 

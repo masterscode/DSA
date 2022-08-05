@@ -1,16 +1,15 @@
-import data_structures.linear.array.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
-        Array ar = new Array(2);
-        ar.insert(34);
-        ar.insert(12);
-        ar.insert(34);
-        ar.insert(2);
-
-//        ar.remove(1);
-        System.out.println(ar.indexOf(20));
-//        System.out.println(ar);
+        List<Integer> numbers = new ArrayList<>();
+        IntStream.rangeClosed(1, 100)
+        .parallel().filter(n -> (n % 2) == 0)
+        .forEach(numbers::add);
+        
+        System.out.println(numbers);
 
 
     }

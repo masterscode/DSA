@@ -2,9 +2,12 @@ package algorithms.search;
 
 import java.util.Arrays;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ExponentialSearch {
     public static void main(String[] args) {
-        System.out.println(search(new int[]{23,5,3,6,3,2,6,7,7,3,2}, 2));
+        log.info("",search(new int[]{23,5,3,6,3,2,6,7,7,3,2}, 2));
     }
 
     public static boolean search(int[] array, int x){
