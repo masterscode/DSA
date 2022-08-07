@@ -5,8 +5,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Recursion {
     public static void main(String[] args) {
+
+        practiceFour(5);
         System.out.println(
-                xxx("2022-08-02T18:05:03.038715+03:00"));
+
+        );
+    }
+
+    public static void practiceFour(int n) {
+        int i = 0;
+
+        if (n > 1)
+            practiceFour(n - 1);
+
+        for (i = 0; i < n; i++)
+            System.out.println(" * ");
     }
 
     public static String reverse(String s) {

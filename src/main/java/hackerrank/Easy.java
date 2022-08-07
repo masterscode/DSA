@@ -1,8 +1,17 @@
 package hackerrank;
 
-import data_structures.linear.array.Array;
-
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,42 +19,69 @@ import java.util.stream.IntStream;
 public class Easy {
     public static void main(String[] args) {
 
-
         System.out.println(
-                Arrays.toString(uniq(new String[]{"emmanuel"}, new String[]{"emmanuel"}))
-        );
-//        System.out.println(
-//                hasHackerRankInText("haacckkerrannkk")
-//        );
+                Arrays.toString(uniq(new String[] { "emmanuel" }, new String[] { "emmanuel" })));
     }
 
+    public static long repeatedString(String s, long n) {
+        /*
+         * There is a string, of lowercase English letters that is repeated infinitely many times. 
+         * Given an integer, find and print the number of letter a's in the first  letters of 
+         * the infinite string.
+         */
+
+        // Write your code here
+        String[] strA = s.split("");
+        Set<String> ss = Arrays.stream(strA).collect(Collectors.toSet());
+        if(ss.size() == 1) return n;
+        
+        if(s.length() < n){
+            Long diff = n - s.length();
+            s = s.concat("a".repeat(diff.intValue()));
+            return Arrays.stream(s.split("")).filter(alph ->alph.equals("a")).count();
+        }
+
+        return Arrays.stream(strA).filter(alph ->alph.equals("a")).count();            
+        }
+
+        public static boolean anagram(String str, String other) {
+            String[] sorted = str.replaceAll(" ", "").split("");
+            Arrays.sort(sorted);
+    
+            str = String.join("", sorted);
+            sorted = other.replaceAll(" ", "").split("");
+            Arrays.sort(sorted);
+            other = String.join("", sorted);
+    
+            return str.equalsIgnoreCase(other);
+        }
 
     public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
         // Write your code here
-        List<Integer>possibleWeights = new ArrayList<>();
+        List<Integer> possibleWeights = new ArrayList<>();
         List<String> substrings = new ArrayList<>();
 
-       int pointer = 0;
-       while(pointer < s.length()){
-           StringBuilder subs = new StringBuilder();
-           for (int i = pointer; i < s.length(); i++) {
+        int pointer = 0;
+        while (pointer < s.length()) {
+            StringBuilder subs = new StringBuilder();
+            for (int i = pointer; i < s.length(); i++) {
 
-//               if((s.charAt(i)))
+                // if((s.charAt(i)))
 
-           }
-       }
+            }
+        }
         return Collections.emptyList();
 
     }
 
-    public static String[] uniq(String[] names1, String[] names2){
+    public static String[] uniq(String[] names1, String[] names2) {
         var names = Arrays.stream(names1).collect(Collectors.toList());
         names.addAll(Arrays.asList(names2));
 
         return names.stream().distinct().toArray(String[]::new);
     }
 
-    public static int getAlphaKeys(String alpha){
+    public static int getAlphaKeys(String alpha) {
         Map<String, Integer> alph = new LinkedHashMap<>();
         alph.put("a", 1);
         alph.put("b", 2);
@@ -74,9 +110,9 @@ public class Easy {
         alph.put("y", 25);
         alph.put("z", 26);
 
-
         return alph.get(alpha);
     }
+
     public static String pangrams(String s) {
         // Write your code here
         Set<String> alphabets = new HashSet<>(Arrays.asList(s.replaceAll(" ", "").toUpperCase().split("")));
@@ -90,16 +126,17 @@ public class Easy {
         StringBuilder builder = new StringBuilder(Character.toString(s.charAt(0)));
 
         for (int i = 0; i < s.length(); i++) {
-           var last = builder.charAt(builder.length() - 1);
-           if (s.charAt(i) != last) {
-               builder.append(s.charAt(i));
-           }
+            var last = builder.charAt(builder.length() - 1);
+            if (s.charAt(i) != last) {
+                builder.append(s.charAt(i));
+            }
 
         }
 
-        return builder.toString().equals("hackerank") ? "YES": "NO";
+        return builder.toString().equals("hackerank") ? "YES" : "NO";
 
     }
+
     public static String hackerrankInStringX(String s) {
         // Write your code here
 
@@ -123,17 +160,20 @@ public class Easy {
             if (c == hackerrank.peek().charAt(0))
                 hackerrank.remove();
 
-            if (hackerrank.isEmpty()) return "YES";
+            if (hackerrank.isEmpty())
+                return "YES";
         }
 
         return "NO";
     }
+
     public static int marsExploration(String s) {
         // Write your code here
         String sos = "SOS";
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) != sos.charAt(i % 3)) count++;
+            if (s.charAt(i) != sos.charAt(i % 3))
+                count++;
         }
         return count;
     }
@@ -149,11 +189,9 @@ public class Easy {
                 "lower", 0,
                 "upper", 0,
                 "numbers", 0,
-                "special", 0
-        );
+                "special", 0);
 
         Map<String, Integer> registry = new HashMap<>(x);
-
 
         for (var ch : password.split("")) {
             if (numbers.contains(ch)) {
@@ -176,7 +214,6 @@ public class Easy {
 
         return password.length();
 
-
     }
 
     static int minimumNumberX(int n, String password) {
@@ -188,24 +225,26 @@ public class Easy {
         String uppercase = ".*[A-Z]+.*";
         String num = ".*[0-9]+.*";
         String specialchar = ".*[-!@#$%^&*()+]+.*";
-        //Regex for pattern matching
+        // Regex for pattern matching
 
-        if (!(password.matches(lowercase))) lc++;
-        //if there is no match to a lowercase,"lc" is increased by 1.
+        if (!(password.matches(lowercase)))
+            lc++;
+        // if there is no match to a lowercase,"lc" is increased by 1.
 
-        if (!(password.matches(uppercase))) uc++;
-        //if there is no match to an uppercase,"uc" is increased by 1.
+        if (!(password.matches(uppercase)))
+            uc++;
+        // if there is no match to an uppercase,"uc" is increased by 1.
 
-        if (!(password.matches(num))) no++;
-        //if there is no match to a number,"no" is increased by 1.
+        if (!(password.matches(num)))
+            no++;
+        // if there is no match to a number,"no" is increased by 1.
 
-        if (!(password.matches(specialchar))) sc++;
-        //if there is no match to a specialCharacter,"sc" is increased by 1.
-
+        if (!(password.matches(specialchar)))
+            sc++;
+        // if there is no match to a specialCharacter,"sc" is increased by 1.
 
         sum = lc + uc + sc + no;
         return (sum > (6 - n)) ? sum : (6 - n);
-
 
     }
 
@@ -214,9 +253,10 @@ public class Easy {
         int wordsCount = 1;
 
         for (var word : s.split("")) {
-            if (word.equals(word.toUpperCase())) wordsCount++;
+            if (word.equals(word.toUpperCase()))
+                wordsCount++;
         }
-        int betterAlt = s.length() - s.replaceAll("[A-Z]", "").length() + 1; //a better alt imo
+        int betterAlt = s.length() - s.replaceAll("[A-Z]", "").length() + 1; // a better alt imo
 
         return wordsCount;
     }
@@ -251,10 +291,12 @@ public class Easy {
             int sum = 0;
             int limit = i + m - 1;
             for (int j = i; j <= limit; j++) {
-                if (limit >= s.size()) break;
+                if (limit >= s.size())
+                    break;
                 sum += s.get(j);
             }
-            if (sum == d) counter++;
+            if (sum == d)
+                counter++;
         }
 
         return counter;
@@ -292,8 +334,7 @@ public class Easy {
         int charged = b - ((totalCost) / 2);
 
         System.out.println(
-                charged == 0 ? message : charged
-        );
+                charged == 0 ? message : charged);
     }
 
     public static int sockMerchant(int n, List<Integer> ar) {
@@ -308,7 +349,8 @@ public class Easy {
         int result = 0;
 
         for (var set : sockPair.entrySet()) {
-            if (set.getValue() < 2) continue;
+            if (set.getValue() < 2)
+                continue;
             result += set.getValue() / 2;
         }
 
@@ -323,7 +365,8 @@ public class Easy {
 
         int counter = 0;
         while (counter <= n) {
-            if (isBetween(p, counter)) break;
+            if (isBetween(p, counter))
+                break;
             frontCount += 1;
             counter += 2;
         }
@@ -331,26 +374,27 @@ public class Easy {
         counter = n;
 
         while (counter >= 0) {
-            if (isBetween(p, counter)) break;
+            if (isBetween(p, counter))
+                break;
             rearCount += 1;
             counter -= 2;
         }
-
 
         return Math.min(frontCount, rearCount);
     }
 
     public static int pageCountX(int n, int p) {
         // Write your code here
-        if (n == 2) return 0;
-        if (n % 2 == 0 && n - p == 1) return 1;
+        if (n == 2)
+            return 0;
+        if (n % 2 == 0 && n - p == 1)
+            return 1;
 
         return Math.min(p / 2, (n - p) / 2);
     }
 
     private static boolean isBetween(int page, int sheet) {
-        return
-                page == (sheet - 1) || page == sheet;
+        return page == (sheet - 1) || page == sheet;
     }
 
     public static int countingValleys(int steps, String path) {
@@ -372,18 +416,21 @@ public class Easy {
                     valleyCount += 1;
                 }
             }
-            if (valleyCount > 1) result++;
+            if (valleyCount > 1)
+                result++;
         }
         return result;
     }
 
     public static int countingValleysX(int steps, String path) {
 
-        int v = 0;     // # of valleys
-        int lvl = 0;   // current level
+        int v = 0; // # of valleys
+        int lvl = 0; // current level
         for (char c : path.toCharArray()) {
-            if (c == 'U') ++lvl;
-            if (c == 'D') --lvl;
+            if (c == 'U')
+                ++lvl;
+            if (c == 'D')
+                --lvl;
 
             // if we just came UP to sea level
             if (lvl == 0 && c == 'U')
@@ -400,7 +447,8 @@ public class Easy {
         for (Integer keyboard : keyboards) {
             for (Integer drive : drives) {
                 int sum = keyboard + drive;
-                if (sum >= result && sum <= budget) result = sum;
+                if (sum >= result && sum <= budget)
+                    result = sum;
             }
         }
 
@@ -417,15 +465,15 @@ public class Easy {
 
             for (int j = in; j < a.size(); j++) {
                 int diff = a.get(in) - a.get(j) < 0 ? -1 * (a.get(in) - a.get(j)) : a.get(in) - a.get(j);
-                if (diff <= 1) sub.add(a.get(j));
+                if (diff <= 1)
+                    sub.add(a.get(j));
             }
             sub.remove(0);
             subs.add(sub);
         }
 
         return Collections.max(
-                subs.stream().map(List::size).collect(Collectors.toList())
-        );
+                subs.stream().map(List::size).collect(Collectors.toList()));
 
     }
 
@@ -436,7 +484,8 @@ public class Easy {
         scoreBoard.addAll(player);
         scoreBoard.add(0);
         AtomicInteger position = new AtomicInteger(0);
-        var s = scoreBoard.stream().distinct().sorted(Comparator.reverseOrder()).collect(Collectors.toMap(k -> k, v -> position.getAndIncrement()));
+        var s = scoreBoard.stream().distinct().sorted(Comparator.reverseOrder())
+                .collect(Collectors.toMap(k -> k, v -> position.getAndIncrement()));
 
         System.out.println(s);
         List<Integer> result = new ArrayList<>();
@@ -448,7 +497,7 @@ public class Easy {
         return result;
     }
 
-    //TODO: refactor this method to use a single loop to solve the algorithm
+    // TODO: refactor this method to use a single loop to solve the algorithm
     public static int beautifulDays(int i, int j, int k) {
         // Write your code here
         short count = 0;
@@ -459,10 +508,10 @@ public class Easy {
             return Integer.parseInt(stringBuilder.toString());
         }).collect(Collectors.toList());
 
-
         for (int in = 0; in < range.size(); in++) {
             var diff = range.get(in) - reverseRange.get(in);
-            if (diff % k == 0) count += 1;
+            if (diff % k == 0)
+                count += 1;
         }
 
         return count;
@@ -471,25 +520,26 @@ public class Easy {
     public static int findDigits(int n) {
         // Write your code here
         return (int) Arrays.stream(String.valueOf(n).split("")).map(s -> Integer.parseInt(s)).filter(ns -> {
-            if (ns <= 0) return false;
+            if (ns <= 0)
+                return false;
             return (n % ns) == 0;
         }).count();
     }
 }
 
 /*
-Top 10 Sites for your career
-1. Linkedin
-2. Indeed
-3. Naukri
-4. Monster
-5. JobBait
-6. Careercloud
-7. Dice
-8. CareerBuilder
-9. Jibberjobber
-10. Glassdoor
-11. Upwork
-12. Fiverr
-13. Freelance.com
+ * Top 10 Sites for your career
+ * 1. Linkedin
+ * 2. Indeed
+ * 3. Naukri
+ * 4. Monster
+ * 5. JobBait
+ * 6. Careercloud
+ * 7. Dice
+ * 8. CareerBuilder
+ * 9. Jibberjobber
+ * 10. Glassdoor
+ * 11. Upwork
+ * 12. Fiverr
+ * 13. Freelance.com
  */
