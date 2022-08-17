@@ -13,48 +13,83 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Easy {
     public static void main(String[] args) {
+        // System.out.println(uniqueNumber(Arrays.asList(2, 3, 4, 4, 2, 3, 7)));
 
-        System.out.println(
-                Arrays.toString(uniq(new String[] { "emmanuel" }, new String[] { "emmanuel" })));
+        char b = 'b';
+        char a = --b;
+        System.out.println(++a);
+
     }
+
+    public static Integer theLoveLetterMystery(String s) {
+        // Write your code here
+        if (isPalindrome.test(s)) return 0;
+
+
+
+        return 0;
+
+    }
+
+
+    static Predicate<String> isPalindrome = s -> new StringBuffer(s).reverse().toString().equals(s);
+
 
     public static long repeatedString(String s, long n) {
         /*
-         * There is a string, of lowercase English letters that is repeated infinitely many times. 
-         * Given an integer, find and print the number of letter a's in the first  letters of 
+         * There is a string, of lowercase English letters that is repeated infinitely
+         * many times.
+         * Given an integer, find and print the number of letter a's in the first
+         * letters of
          * the infinite string.
          */
 
         // Write your code here
-        String[] strA = s.split("");
-        Set<String> ss = Arrays.stream(strA).collect(Collectors.toSet());
-        if(ss.size() == 1) return n;
-        
-        if(s.length() < n){
-            Long diff = n - s.length();
-            s = s.concat("a".repeat(diff.intValue()));
-            return Arrays.stream(s.split("")).filter(alph ->alph.equals("a")).count();
-        }
 
-        return Arrays.stream(strA).filter(alph ->alph.equals("a")).count();            
-        }
+        double nn = (double) n;
+        double sl = s.length();
 
-        public static boolean anagram(String str, String other) {
-            String[] sorted = str.replaceAll(" ", "").split("");
-            Arrays.sort(sorted);
-    
-            str = String.join("", sorted);
-            sorted = other.replaceAll(" ", "").split("");
-            Arrays.sort(sorted);
-            other = String.join("", sorted);
-    
-            return str.equalsIgnoreCase(other);
+        int r = Double.valueOf(Math.ceil(nn / sl)).intValue();
+
+        s = s.repeat(r);
+        s = s.substring(0, (int) n);
+
+        return Arrays.stream(s.split("")).filter(alph -> alph.equals("a")).count();
+    }
+
+    public static boolean isEven(int n) {
+        return (n & 1) == 0;
+    }
+
+    public static int uniqueNumber(List<Integer> nums) {
+        /*
+         * find the unique number in a collection
+         */
+        int n = 0;
+        for (Integer integer : nums) {
+            n ^= integer;
         }
+        return n;
+    }
+
+    public static boolean anagram(String str, String other) {
+        String[] sorted = str.replaceAll(" ", "").split("");
+        Arrays.sort(sorted);
+
+        str = String.join("", sorted);
+        sorted = other.replaceAll(" ", "").split("");
+        Arrays.sort(sorted);
+        other = String.join("", sorted);
+
+        return str.equalsIgnoreCase(other);
+    }
 
     public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
         // Write your code here

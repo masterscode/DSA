@@ -6,9 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 public class Recursion {
     public static void main(String[] args) {
 
-        practiceFour(5);
-        System.out.println(
-
+        log.info(
+            reverse("null")
         );
     }
 
@@ -19,13 +18,16 @@ public class Recursion {
             practiceFour(n - 1);
 
         for (i = 0; i < n; i++)
-            System.out.println(" * ");
+            log.info(" * ");
     }
 
     public static String reverse(String s) {
-        if (s.length() == 0)
+        if (s.length() == 1)
             return s;
-        return reverse(s.substring(1)).concat(String.valueOf(s.charAt(0)));
+        return reverse(
+            s.substring(1))
+            .concat(String.valueOf(s.charAt(0))
+            );
     }
 
     public static String recurse(String string, int i) {
