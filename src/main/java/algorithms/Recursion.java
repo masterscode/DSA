@@ -6,9 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 public class Recursion {
     public static void main(String[] args) {
 
-        log.info(
-            reverse("null")
-        );
+        printn(5);
+    }
+
+    static void printn(int n){
+        if (n == 0)return;
+
+        printn(n -1);
+        System.out.println(n);
     }
 
     public static void practiceFour(int n) {
