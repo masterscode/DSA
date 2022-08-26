@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 public class Recursion {
     public static void main(String[] args) {
 
-        printn(5);
     }
 
     static void printn(int n){
