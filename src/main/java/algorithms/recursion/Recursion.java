@@ -1,22 +1,46 @@
-package algorithms;
+package algorithms.recursion;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Recursion {
-    public static void main(String[] args) {
+    static int fp = 15;
 
+    public static void main(String[] args) {
+        gfg6("xyz");
     }
 
-    static void printn(int n){
-        if (n == 0)return;
+    static void gfg6(String s){
+        if(s.length() == 0) return;
 
-        printn(n -1);
+        gfg6(s.substring(1));
+        gfg6(s.substring(1));
+        System.out.print(s.charAt(0));
+    }
+
+    static int gfg7(int n) {
+        int f, t;
+        if (n <= 2) {
+            fp = 1;
+            return 1;
+        }
+
+        t = gfg7(n - 1);
+        f = t + fp;
+        fp = t;
+        return f;
+    }
+
+
+    static void printn(int n) {
+        if (n == 0) return;
+
+        printn(n - 1);
         System.out.println(n);
     }
 
     public static void practiceFour(int n) {
-        int i = 0;
+        int i;
 
         if (n > 1)
             practiceFour(n - 1);
@@ -29,9 +53,9 @@ public class Recursion {
         if (s.length() == 1)
             return s;
         return reverse(
-            s.substring(1))
-            .concat(String.valueOf(s.charAt(0))
-            );
+                s.substring(1))
+                .concat(String.valueOf(s.charAt(0))
+                );
     }
 
     public static String recurse(String string, int i) {

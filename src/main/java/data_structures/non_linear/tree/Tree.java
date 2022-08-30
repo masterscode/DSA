@@ -1,6 +1,13 @@
 package data_structures.non_linear.tree;
 
+import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -88,14 +95,17 @@ public class Tree {
 
         if (isLeafNode(root)) return 0;
 
-        return 1 + Math.max(height(root.getLeftChild()), height(root.getRightChild()));
+        return 1 + Math.max(
+                height(root.getLeftChild()),
+                height(root.getRightChild())
+        );
     }
 
     private int min(Node root) {
         if (isLeafNode(root)) return root.getValue();
 
-        var leftLeaf = min(root.getLeftChild());
-        var rightLeaf = min(root.getRightChild());
+        int leftLeaf = min(root.getLeftChild());
+        int rightLeaf = min(root.getRightChild());
 
         int leftRightMin = Math.min(leftLeaf, rightLeaf);
 

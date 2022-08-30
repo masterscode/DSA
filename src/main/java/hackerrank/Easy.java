@@ -20,18 +20,25 @@ import java.util.stream.IntStream;
 
 public class Easy {
     public static void main(String[] args) {
-        // System.out.println(uniqueNumber(Arrays.asList(2, 3, 4, 4, 2, 3, 7)));
 
-        char b = 'b';
-        char a = --b;
-        System.out.println(++a);
-
+//        IntStream.rangeClosed(1, 40).filter(n -> (n & 1) != 0).filter(Easy::isPrime).forEach(System.out::println);
+        printFactors(20);
+    }
+    public static void printFactors(int n){
+        IntStream.rangeClosed(1, n).filter(i -> n% i == 0).forEach(System.out::println);
+    }
+    public static boolean isPrime(int n) {
+        int c = 2;
+        while (c * c <= n) {
+            if (n % c == 0) return false;
+            c++;
+        }
+        return true;
     }
 
     public static Integer theLoveLetterMystery(String s) {
         // Write your code here
         if (isPalindrome.test(s)) return 0;
-
 
 
         return 0;
