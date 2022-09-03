@@ -7,15 +7,45 @@ public class Recursion {
     static int fp = 15;
 
     public static void main(String[] args) {
-        gfg6("xyz");
+        System.out.println(gfg2(21));
     }
 
-    static void gfg6(String s){
-        if(s.length() == 0) return;
+    static int gfg2(int n) {
+        if (n == 1)
+            return 0;
+        else
+            return 1 + gfg2(n / 2);
+    }
+    static void gfg3(int n) {
+        int i = 0;
+        if (n > 1)
+            gfg3(n - 1);
+        for (i = 0; i < n; i++)
+            System.out.print(" * ");
+    }
+    static void gfg4(int x) {
+        if(x > 0) {
+            gfg4(--x);
+            System.out.print(x + " ");
+            gfg4(--x);
+        }
+    }
+        static int gfg5(int a, int b) {
+        if (b == 0)
+            return 1;
+        if (b % 2 == 0)
+            return gfg5(a * a, b / 2);
+
+        return gfg5(a * a, b / 2) * a;
+    }
+
+
+    static void gfg6(String s) {
+        if (s.length() == 0) return;
 
         gfg6(s.substring(1));
         gfg6(s.substring(1));
-        System.out.print(s.charAt(0));
+        System.out.println(s.charAt(0));
     }
 
     static int gfg7(int n) {
