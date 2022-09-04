@@ -11,9 +11,14 @@ public class Recursion {
     static int fp = 15;
 
     public static void main(String[] args) {
-        System.out.println(mapToList(10));
+        System.out.println(myreverse("abcd"));
     }
 
+    public static String myreverse(String s) {
+        if (s.length() == 1)
+            return s;
+       return  myreverse(s.substring(1)) + s.charAt(0);
+    }
     static String toBinaryStr(int n) {
         if (n <= 0) return "";
         return toBinaryStr(n / 2).concat(String.valueOf(n % 2));
