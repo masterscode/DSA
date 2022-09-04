@@ -2,14 +2,34 @@ package algorithms.recursion;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Slf4j
 public class Recursion {
     static int fp = 15;
 
     public static void main(String[] args) {
-        System.out.println(gfg2(21));
+        System.out.println(mapToList(10));
     }
 
+    static String toBinaryStr(int n) {
+        if (n <= 0) return "";
+        return toBinaryStr(n / 2).concat(String.valueOf(n % 2));
+    }
+
+    static List<Integer> mapToList(int max){
+        if (max <= 0) {
+            var list = new ArrayList<Integer>();
+            list.add(max);
+            return list;
+        }
+        List<Integer> list = mapToList(max - 1);
+        list.set(0, list.get(0)+max);
+        return list;
+
+    }
     static int gfg2(int n) {
         if (n == 1)
             return 0;
