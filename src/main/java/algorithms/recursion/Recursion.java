@@ -17,30 +17,33 @@ public class Recursion {
     public static String myreverse(String s) {
         if (s.length() == 1)
             return s;
-       return  myreverse(s.substring(1)) + s.charAt(0);
+        return myreverse(s.substring(1)) + s.charAt(0);
     }
+
     static String toBinaryStr(int n) {
         if (n <= 0) return "";
         return toBinaryStr(n / 2).concat(String.valueOf(n % 2));
     }
 
-    static List<Integer> mapToList(int max){
+    static List<Integer> mapToList(int max) {
         if (max <= 0) {
             var list = new ArrayList<Integer>();
             list.add(max);
             return list;
         }
         List<Integer> list = mapToList(max - 1);
-        list.set(0, list.get(0)+max);
+        list.set(0, list.get(0) + max);
         return list;
 
     }
+
     static int gfg2(int n) {
         if (n == 1)
             return 0;
         else
             return 1 + gfg2(n / 2);
     }
+
     static void gfg3(int n) {
         int i = 0;
         if (n > 1)
@@ -48,14 +51,16 @@ public class Recursion {
         for (i = 0; i < n; i++)
             System.out.print(" * ");
     }
+
     static void gfg4(int x) {
-        if(x > 0) {
+        if (x > 0) {
             gfg4(--x);
             System.out.print(x + " ");
             gfg4(--x);
         }
     }
-        static int gfg5(int a, int b) {
+
+    static int gfg5(int a, int b) {
         if (b == 0)
             return 1;
         if (b % 2 == 0)

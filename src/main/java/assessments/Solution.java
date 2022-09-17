@@ -1,8 +1,19 @@
 package assessments;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 class Solution {
     public static void main(String[] args) {
         System.out.println(longestPalindrome("Hello"));
+    }
+
+    public static String isDuoDigit(int number) {
+        // Write your code here
+        // To debug: System.err.println("Debug messages...");
+        number = Math.abs(number);
+      return   Arrays.stream(String.valueOf(number).split("")).collect(Collectors.toSet()).size() == 2
+              ? "y" :"n";
     }
 
     public static String longestPalindrome(String s) {
