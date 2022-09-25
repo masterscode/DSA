@@ -7,12 +7,35 @@ import java.util.List;
 public class Recursions {
 
     public static void main(String[] args) {
-        int fib = fibonacci(12);
+//        int fib = fibonacci(12);
 //        System.out.println(fib);
 //        triangle(5,0);
-        int[] ar = new int[]{5, 4, 3, 0, 5, 7, 2};
-        bubbleSortR(ar, ar.length - 1, 0);
+        int[] ar = new int[]{5, 4, 3, 2,  8, 9};
+        selectionSortR(ar, ar.length - 1, 0, 0);
         System.out.println(Arrays.toString(ar));
+    }
+
+    static void selectionSortR(int[] ar, int row, int col, int maxIndex) {
+        if (row == 0) return;
+        if (col <= row) {
+
+            if (ar[col] > ar[maxIndex]) maxIndex = col;
+
+
+            selectionSortR(ar, row, col + 1, maxIndex);
+        } else {
+            int temp = ar[maxIndex];
+            ar[maxIndex] = ar[row - 1];
+            ar[row - 1] = ar[row];
+            ar[row] = temp;
+
+//            if (ar[row] < ar[maxIndex]) {
+//                int temp = ar[row];
+//                ar[row] = ar[maxIndex];
+//                ar[maxIndex] = temp;
+//            }
+            selectionSortR(ar, row - 1, 0, 0);
+        }
     }
 
     static void bubbleSortR(int[] ar, int row, int col) {
