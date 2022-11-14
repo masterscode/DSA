@@ -1,6 +1,7 @@
 package algorithms.search;
 
 
+import __V1.algorithms.search.LinearSearch;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

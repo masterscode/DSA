@@ -2,6 +2,7 @@ package algorithms.sorting;
 
 import java.util.Arrays;
 
+import __V1.algorithms.sorting.BubbleSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
