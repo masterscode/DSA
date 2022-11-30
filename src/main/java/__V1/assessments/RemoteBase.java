@@ -70,7 +70,8 @@ public class RemoteBase {
         );
 
         System.out.println(
-                String.format("The messages in the conversation are %s", String.join("' ", message.values()))
+                String.format("The messages in the conversation are %s", String.join(" ",
+                        message.values().stream().map(s-> String.format("'%s'", s)).collect(Collectors.toList())))
         );
     }
 }
