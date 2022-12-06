@@ -44,7 +44,7 @@ public class RemoteBase {
             if(itemIdx < 0){
                 System.out.println(String.format("File with id { %d } does not exist", item));
             }else{
-                members.remove(itemIdx);
+                files.remove(itemIdx);
             }
         }
     }
