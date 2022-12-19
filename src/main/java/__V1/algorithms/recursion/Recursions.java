@@ -1,8 +1,6 @@
 package __V1.algorithms.recursion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Recursions {
 
@@ -10,9 +8,13 @@ public class Recursions {
 //        int fib = fibonacci(12);
 //        System.out.println(fib);
 //        triangle(5,0);
-        int[] ar = new int[]{5, 4, 3, 2,  8, 9};
-        selectionSortR(ar, ar.length - 1, 0, 0);
-        System.out.println(Arrays.toString(ar));
+        int[] ar = new int[]{5, 4, 3, 2, 8, 9};
+//        selectionSortR(ar, ar.length - 1, 0, 0);
+//        System.out.println(Arrays.toString(ar));
+
+        System.out.println(
+                Arrays.toString(twoSum(ar, 7))
+        );
     }
 
     static void selectionSortR(int[] ar, int row, int col, int maxIndex) {
@@ -118,5 +120,20 @@ public class Recursions {
         if (x < col[mid]) return binarySearch(col, left, mid - 1, x);
 
         return binarySearch(col, mid - 1, right, x);
+    }
+
+
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> sumMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int difference = target - nums[i];
+
+            if (sumMap.containsKey(difference))
+                return new int[]{sumMap.get(difference), i};
+            sumMap.put(nums[i], i);
+        }
+
+        return new int[0];
     }
 }
