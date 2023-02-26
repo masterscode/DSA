@@ -9,7 +9,7 @@ public class Main {
         .parallel().filter(n -> (n % 2) == 0)
         .forEach(numbers::add);
         
-//        System.out.println(numbers);
+    //    System.out.println(numbers);
 
         System.out.println(
                 negSubstring("emmanuel")
@@ -41,3 +41,41 @@ public class Main {
         return sum;
     }
 }
+
+
+/*
+ *     @Override
+    public MedusaMerchantResponse setMerchantPin(ForgotPinDto request) {
+            Merchants loggedInMerchant = getLoggedInMerchant();
+
+            loggedInMerchant.setPin(request.getPin());
+            merchantRepository.save(loggedInMerchant);
+            return responseHelper.getResponse(SUCCESS_CODE, SUCCESS, "", HttpStatus.OK);
+    }
+
+    @Override
+    public MedusaMerchantResponse changeMerchantPin(ChangePinDto changePinDto){
+
+        final Merchants loggedInMerchant = getLoggedInMerchant();
+        if (!changePinDto.getOldPin().equals(loggedInMerchant.getPin()))
+                return responseHelper.getResponse(EXPECTATION_FAILED_CODE, EXPECTATION_FAILED, "", HttpStatus.EXPECTATION_FAILED);
+
+        loggedInMerchant.setPin(changePinDto.getNewPin());
+        merchantRepository.save(loggedInMerchant);
+
+        return responseHelper.getResponse(SUCCESS_CODE, SUCCESS, "Pin changed successfully", HttpStatus.ACCEPTED);
+    }
+
+    @Override
+    public MedusaMerchantResponse validateMerchantPin(ValidatePinDto pinDto){
+        Merchants loggedInMerchant = getLoggedInMerchant();
+        if(!loggedInMerchant.getPin().equals(pinDto.getPin())) throw new NoResultException("Pin incorrect");
+
+        return responseHelper.getResponse(SUCCESS_CODE, SUCCESS, "Correct pin", HttpStatus.OK);
+    }
+
+    private Merchants getLoggedInMerchant(){
+        final Authentication authentication = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).orElseThrow(()-> new SecurityException("Authentication failed"));
+        return merchantRepository.findMerchantByUsername(authentication.getName()).orElseThrow(() -> new EntityNotFoundException("user not found"));
+    }
+ */

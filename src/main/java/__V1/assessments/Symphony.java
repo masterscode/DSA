@@ -1,7 +1,6 @@
 package __V1.assessments;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+
 
 public class Symphony {
     public static void main(String[] args) {
@@ -42,7 +41,7 @@ public class Symphony {
     }
 
 
-    private static boolean lucky33(int a, int b){
+    public static boolean lucky33(int a, int b){
         if(a == 33 || b == 33) return true;
 
         if(b - a == 33) return true;

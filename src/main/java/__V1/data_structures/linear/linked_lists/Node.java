@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Node<T> {
     public T value;
-    public Node next;
-    public Node prev;
+    public Node<T> next;
+    public Node<T> prev;
 
     public Node (T v){
         this.value = v;
